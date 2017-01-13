@@ -1,6 +1,6 @@
 {
     "swagger": "2.0",
-    "host": "your.coap.server",
+    "host": "your.http.server",
     "basePath": "/",
     "info": {
         "version": "1.1",
@@ -9,19 +9,19 @@
     },
     "tags": [
         {
-            "name": "Manager",
-            "description": "CoAP server (runs on any computer)"
+            "name": "Building Manager",
+            "description": "http server (runs on any computer)"
         },
         {
             "name": "Vehicle",
-            "description": "CoAP server (runs on any computer)"
+            "description": "http server (runs on any computer)"
         }
     ],
     "paths": {
         "/MANAGER_IP/parking_spots": {
             "get": {
                 "tags": [
-                    "Manager"
+                    "Building Manager"
                 ],
                 "description": "Gets `ParkingSpot` objects.\nOptional query param of **state** allows us to filter on free|reserved|occupied parking spots.\n",
                 "parameters": [
@@ -177,24 +177,66 @@
                 }
             }
         },
-        "/VEHICLE_IP/bills": {
+        "Set User Account": {
             "post": {
                 "tags": [
-                    "Vehicle"
+                    "User"
                 ],
-                "description": "Send invoice to Vehicle\n",
+                "description": "Register User account details\n",
                 "parameters": [
                     {
-                        "name": "amount",
+                        "name": "UserID",
                         "in": "formData",
-                        "description": "Billed amount (in cents)",
+                        "description": "User ID of the office worker in the form Office-Worker-GroupNo. Ex- Office-Worker-25",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "GroupNo",
+                        "in": "formData",
+                        "description": "Group Number the office worker Ex- 25",
                         "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "RoomID",
+                        "in": "formData",
+                        "description": "Room ID for the office worker in the form Room-No. Ex- Room-1",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "Name",
+                        "in": "formData",
+                        "description": "Name of the user in the form Last Name, First Name. Ex- Rahman,L.F.",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "UserID",
+                        "in": "formData",
+                        "description": "User ID of the office worker in the form Office-Worker-GroupNo. Ex- Office-Worker-25",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "Email",
+                        "in": "formData",
+                        "description": "Email ID of the user. Ex- L.F.Rahman@tue.nl",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "Password",
+                        "in": "formData",
+                        "description": "Password of the user in the form pwd-GroupNo. Ex- pwd-25",
+                        "type": "string",
                         "required": true
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "Bill created",
+                        "description": "User Registered",
                         "schema": {
                             "type": "object",
                             "properties": {
