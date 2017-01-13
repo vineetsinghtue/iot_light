@@ -18,7 +18,7 @@
         }
     ],
     "paths": {
-        "Light Usage": {
+        "Light Usage Details": {
             "get": {
                 "tags": [
                     "Building Manager"
@@ -28,7 +28,7 @@
                     {
                         "name": "LightID",
                         "in": "query",
-                        "description": "Usage of the returned Light ID",
+                        "description": "Usage of the Light ID",
                         "required": true,
                         "type": "string"
                     },
@@ -68,28 +68,45 @@
                 }
             }
         },
-        "/MANAGER_IP/parking_spots/{parkingSpotId}": {
+        "Dim Usage Details": {
             "get": {
                 "tags": [
-                    "Manager"
+                    "Building Manager"
                 ],
-                "description": "Gets a particular `ParkingSpot` object.\n",
+                "description": "Gets `Dim Light Usage`. Query param of **light-id** allows us to view dim usage details for the light.\n",
                 "parameters": [
                     {
-                        "name": "parkingSpotId",
-                        "in": "path",
-                        "description": "ParkingSpot ID",
-                        "type": "string",
+                        "name": "LightID",
+                        "in": "query",
+                        "description": "Dim Usage of the Light ID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "formData",
+                        "description": "Start time for check",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "to",
+                        "in": "formData",
+                        "description": "End time for check",
+                        "type": "integer",
                         "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response",
-                        "schema": {
-                            "title": "ParkingSpot",
+                        "description": "Light Usage Details",
+                       "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/ParkingSpot"
+                            "properties": {
+                                "Dim Usage in seconds": {
+                                    "type": "integer"
+                                }
+                            }
                         }
                     }
                 }
