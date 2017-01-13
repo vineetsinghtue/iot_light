@@ -23,30 +23,31 @@
                 "tags": [
                     "Building Manager"
                 ],
-                "description": "Gets `ParkingSpot` objects.\nOptional query param of **state** allows us to filter on free|reserved|occupied parking spots.\n",
+                "description": "Gets `Light Usage`. Query param of **light-id** allows us to view usage details for the 3 users.\n",
                 "parameters": [
                     {
-                        "name": "state",
+                        "name": "LightID",
                         "in": "query",
-                        "description": "State of the returned parking spots",
-                        "required": false,
-                        "type": "string",
-                        "enum": [
-                            "free",
-                            "reserved",
-                            "occupied"
-                        ]
+                        "description": "Usage of the returned Light ID",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response",
-                        "schema": {
-                            "title": "ParkingSpots",
-                            "type": "array",
-                            "items": {
-                                "title": "ParkingSpot",
-                                "$ref": "#/definitions/ParkingSpot"
+                        "description": "Light Usage Details",
+                       "schema": {
+                            "type": "object",
+                            "properties": {
+                                "User1 Usage in seconds": {
+                                    "type": "integer"
+                                },
+                                "User2 Usage in seconds": {
+                                    "type": "integer"
+                                },
+                                "User3 Usage in seconds": {
+                                    "type": "integer"
+                                }
                             }
                         }
                     }
