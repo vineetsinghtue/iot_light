@@ -18,7 +18,7 @@
         }
     ],
     "paths": {
-        "/MANAGER_IP/parking_spots": {
+        "Light Usage": {
             "get": {
                 "tags": [
                     "Building Manager"
@@ -31,6 +31,20 @@
                         "description": "Usage of the returned Light ID",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "formData",
+                        "description": "Start time for check",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "to",
+                        "in": "formData",
+                        "description": "End time for check",
+                        "type": "integer",
+                        "required": true
                     }
                 ],
                 "responses": {
